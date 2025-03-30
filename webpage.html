@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPAS - Student Performance Analysis System</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #f1c40f;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 600px;
+        }
+        
+        .hero-content h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #f1c40f;
+            color: #333;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #f39c12;
+            transform: translateY(-3px);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            color: #2a5298;
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #1e3c72;
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: #f1c40f;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1e3c72;
+        }
+        
+        /* Demo Section */
+        .demo {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .demo-container {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .demo-form {
+            flex: 1;
+            background: #f9f9f9;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .demo-form h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #1e3c72;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .demo-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .demo-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Results Section */
+        .results {
+            padding: 80px 0;
+            background: #f9f9f9;
+            text-align: center;
+        }
+        
+        .results h2 {
+            margin-bottom: 40px;
+        }
+        
+        .result-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .result-card h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #1e3c72;
+        }
+        
+        .result-item {
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1e3c72;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #f1c40f;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #f1c40f;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            .hero-content {
+                text-align: center;
+                padding: 0 20px;
+            }
+            
+            .about-content, .demo-container {
+                flex-direction: column;
+            }
+            
+            .about-image, .demo-image {
+                margin-top: 30px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">SPAS</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#demo">Try It</a></li>
+                    <li><a href="#results">Results</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Student Performance Analysis System</h1>
+            <p>An intelligent system that helps educators identify at-risk students and provides personalized insights to improve academic performance using machine learning algorithms.</p>
+            <a href="#demo" class="btn">Try Demo</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About SPAS</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Revolutionizing Student Performance Analysis</h2>
+                    <p>The Student Performance Analysis System (SPAS) is a web-based application that leverages machine learning to analyze and predict student performance. Developed as part of a Bachelor of Technology project in Computer Science & Engineering with specialization in Artificial Intelligence & Machine Learning, SPAS aims to bridge the gap between educators and students by providing actionable insights.</p>
+                    <p>Traditional student management systems often restrict access to top management, leaving lecturers without the tools they need to effectively monitor and guide their students. SPAS changes this by providing lecturers with predictive capabilities to identify students who may need additional support.</p>
+                    <p>The system uses classification techniques from data mining to analyze previous semester grades and mid-term examinations, generating predictions that help educators intervene early and students understand their areas for improvement.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Education Analytics">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Performance Prediction</h3>
+                    <p>Our machine learning model predicts future student performance based on historical data, helping educators identify at-risk students early.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Personalized Insights</h3>
+                    <p>Students receive customized reports highlighting their strengths and weaknesses in specific subjects and topics.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Parent Notifications</h3>
+                    <p>Weekly performance reports are automatically generated and shared with parents to keep them informed about their child's progress.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Interactive Dashboards</h3>
+                    <p>Visual analytics dashboards provide clear insights into class performance trends and individual student progress.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Study Recommendations</h3>
+                    <p>The system suggests specific study materials and approaches based on each student's performance patterns.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>Report Generation</h3>
+                    <p>Automatically generate detailed PDF reports for students, parents, and administrators with just one click.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo" id="demo">
+        <div class="container">
+            <h2 class="section-title">Try Our Demo</h2>
+            <div class="demo-container">
+                <div class="demo-form">
+                    <h2>Performance Prediction</h2>
+                    <form id="predictionForm">
+                        <div class="form-group">
+                            <label for="sem1">1st Semester CGPA:</label>
+                            <input type="number" id="sem1" step="0.1" min="0" max="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sem2">2nd Semester CGPA:</label>
+                            <input type="number" id="sem2" step="0.1" min="0" max="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sem3">3rd Semester CGPA:</label>
+                            <input type="number" id="sem3" step="0.1" min="0" max="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sem4">4th Semester CGPA:</label>
+                            <input type="number" id="sem4" step="0.1" min="0" max="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender:</label>
+                            <select id="gender" required>
+                                <option value="1">Male</option>
+                                <option value="0">Female</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn">Predict 5th Semester</button>
+                    </form>
+                    <div id="predictionResult" style="margin-top: 20px; display: none;">
+                        <h3>Prediction Result</h3>
+                        <p>Our model predicts your 5th Semester CGPA will be: <strong id="predictedValue"></strong></p>
+                    </div>
+                </div>
+                <div class="demo-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Demo Visualization">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results" id="results">
+        <div class="container">
+            <h2 class="section-title">System Results</h2>
+            <div class="result-card">
+                <h3>Example Prediction</h3>
+                <div class="result-item">
+                    <p><strong>Input:</strong></p>
+                    <ul>
+                        <li>1st Semester CGPA: 8.4</li>
+                        <li>2nd Semester CGPA: 7.9</li>
+                        <li>3rd Semester CGPA: 7.3</li>
+                        <li>4th Semester CGPA: 7.9</li>
+                        <li>Gender: Male</li>
+                    </ul>
+                </div>
+                <div class="result-item">
+                    <p><strong>Output:</strong></p>
+                    <p>Our Prediction of your 5th Semester is 8.212</p>
+                </div>
+                <div class="result-item">
+                    <p>The system uses a Linear Regression model trained on historical student performance data to make these predictions. The model achieved an accuracy score of XX% during testing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SPAS</h3>
+                    <p>Student Performance Analysis System developed as part of B.Tech in Computer Science & Engineering with specialization in Artificial Intelligence & Machine Learning.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#demo">Try It</a></li>
+                        <li><a href="#results">Results</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> spas.project@example.com</li>
+                        <li><i class="fas fa-phone"></i> +91 9876543210</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Hyderabad, Telangana, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Student Performance Analysis System. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple form handling for demo purposes
+        document.getElementById('predictionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const sem1 = parseFloat(document.getElementById('sem1').value);
+            const sem2 = parseFloat(document.getElementById('sem2').value);
+            const sem3 = parseFloat(document.getElementById('sem3').value);
+            const sem4 = parseFloat(document.getElementById('sem4').value);
+            const gender = parseInt(document.getElementById('gender').value);
+            
+            // This is a mock prediction - in a real implementation, you would call your ML model here
+            // For demo purposes, we'll use a simple weighted average
+            const predictedValue = (sem1 * 0.2 + sem2 * 0.25 + sem3 * 0.3 + sem4 * 0.25) * (gender === 1 ? 1.02 : 0.98);
+            
+            // Display the result
+            document.getElementById('predictedValue').textContent = predictedValue.toFixed(3);
+            document.getElementById('predictionResult').style.display = 'block';
+            
+            // Scroll to the result
+            document.getElementById('predictionResult').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
