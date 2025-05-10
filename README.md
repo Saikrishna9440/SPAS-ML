@@ -1,2 +1,2 @@
 # SPAS-ML
-Limear regression algorithm t0 predict students feauture cgpa
+Limear regression algorithm to predict students feauture cgpa
