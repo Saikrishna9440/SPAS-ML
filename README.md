@@ -1,20 +1,12 @@
-SPAS is designed to explore, analyze, and model datasets using advanced Machine Learning and Data Analytics techniques.
-The goal is to extract meaningful insights, build predictive models, and provide a foundation for real-world problem-solving.
+The Student Performance Analysis System is designed to analyze academic datasets and evaluate student performance.
+The project helps in identifying factors influencing student success, predicting outcomes, and providing actionable insights to improve academic results.
 
-⚡ Features
+⚡ Key Features
 
-Data preprocessing and cleaning
+Data cleaning and preprocessing of student datasets
 
 Exploratory Data Analysis (EDA) with visualizations
 
-Machine Learning model building and evaluation
+Prediction of student performance using Machine Learning models
 
-Insights and performance metrics
-
-🛠️ Tech Stack
-
-Languages: Python, SQL
-
-Libraries: NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn
-
-Tools: Jupyter Notebook, Git
+Insights and recommendations for academic improvement
